@@ -1,0 +1,25 @@
+README.md
+  s_dd62d74508ad68::t_bb43f3d4d74f7b 43
+scripts/render-demo.py
+  s_dd62d74508ad68::t_bb43f3d4d74f7b 531-533,535
+index.html
+  s_dd62d74508ad68::t_bb43f3d4d74f7b 111-112
+tests/site.spec.ts
+  s_dd62d74508ad68::t_bb43f3d4d74f7b 92,94-99
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "17bfd402fdca0514dcf7c5a14ccd9376d5a5b557",
+  "prompts": {},
+  "sessions": {
+    "s_dd62d74508ad68": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f0d4-637d-7453-85cd-11ee9eed1aa8",
+        "model": "gpt-6-sol"
+      },
+      "human_author": "shubhindia <shubhindia123@gmail.com>"
+    }
+  }
+}
