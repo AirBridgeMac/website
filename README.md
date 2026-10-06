@@ -40,6 +40,8 @@ When verified releases exist, set `VITE_MAC_DOWNLOAD_URL` and `VITE_ANDROID_DOWN
 
 `public/images` contains optimized, synthetic product imagery and the supplied AirBridge logo. WebP assets are intentional website source assets, not application binaries or test outputs. Mac captures come from the local core dashboard test fixture; Android comes from the isolated preview app's synthetic UI tests. No personal notifications, pairing codes, or real clipboard content are used. The clipboard and notification feature panels are labeled illustrations, not claimed screenshots.
 
+The homepage includes a silent, 17-second animated feature walkthrough in `public/media/airbridge-features.mp4`. It shows synthetic file sharing, clipboard, notification, and explicit mirroring actions rather than panning over screenshots. App controls are modeled on the current Mac and Android layouts; Finder, Messages, and system approval are illustrative. The 60 fps video plays only when selected and has a text transcript. To re-render it, install Pillow and ffmpeg, then run `python3 scripts/render-demo.py`; `--preview` writes scene stills under ignored `artifacts/` for review.
+
 To refresh imagery, use the app test fixtures and run the optional asset tool with Pillow installed:
 
 ```sh
