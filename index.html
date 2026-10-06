@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f8f6" />
+    <meta
+      name="description"
+      content="AirBridge brings your Mac and Android together. Share files, sync your clipboard, see notifications, and mirror your phone over your local network."
+    />
+    <meta
+      property="og:title"
+      content="AirBridge - Your Mac. Your Android. Together."
+    />
+    <meta
+      property="og:description"
+      content="Files, clipboard, notifications, and screen sharing. A little less switching. A lot more flow."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/images/favicon.png" type="image/png" />
+    <title>AirBridge - Mac &amp; Android, together</title>
+    <script src="/theme.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-wrap">
+        <a class="brand" href="#" aria-label="AirBridge home"
+          ><img
+            src="/images/logo.webp"
+            alt=""
+            width="36"
+            height="36"
+          />AirBridge</a
+        >
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="#features">The connection</a
+          ><a href="#setup">Getting started</a
+          ><a href="#questions">Good to know</a>
+        </nav>
+        <div class="nav-actions">
+          <button
+            class="icon-button theme-toggle"
+            aria-label="Switch to dark mode"
+            title="Switch to dark mode"
+          >
+            <i data-lucide="moon"></i>
+          </button>
+          <button class="button button-small" data-download>
+            Get AirBridge <i data-lucide="arrow-up-right"></i>
+          </button>
+          <button
+            class="icon-button menu-toggle"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+          >
+            <i data-lucide="menu"></i>
+          </button>
+        </div>
+      </div>
+      <nav
+        id="mobile-nav"
+        class="mobile-nav"
+        aria-label="Mobile navigation"
+        hidden
+      >
+        <a href="#features"
+          >The connection <i data-lucide="arrow-up-right"></i></a
+        ><a href="#setup"
+          >Getting started <i data-lucide="arrow-up-right"></i></a
+        ><a href="#questions"
+          >Good to know <i data-lucide="arrow-up-right"></i
+        ></a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-art" aria-hidden="true">
+          <img
+            class="theme-light"
+            src="/images/hero-light.webp"
+            width="1440"
+            height="820"
+            fetchpriority="high"
+            alt=""
+          />
+          <img
+            class="theme-dark"
+            src="/images/hero-dark.webp"
+            width="1440"
+            height="820"
+            alt=""
+          />
+        </div>
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="status-dot"></span> A little closer, even across
+            ecosystems
+          </div>
+          <h1 id="hero-title">AirBridge<span class="brand-period">.</span></h1>
+          <p class="hero-tagline">Your Mac. Your Android. <em>Together.</em></p>
+          <p class="hero-description">
+            Files, clipboard, notifications, and screen sharing.<br />A little
+            less switching. A lot more flow.
+          </p>
+          <div class="hero-actions">
+            <button class="button" data-download>
+              Get AirBridge <i data-lucide="arrow-down-to-line"></i></button
+            ><a class="text-link" href="#features"
+              >Take a closer look <i data-lucide="arrow-down"></i
+            ></a>
+          </div>
+          <p class="hero-meta">
+            macOS 14+ <span aria-hidden="true">/</span> Android 8+
+            <span aria-hidden="true">/</span> Currently in preview
+          </p>
+        </div>
+        <p class="hero-caption">
+          <span class="caption-line"></span>Two devices. One very good
+          connection.
+        </p>
+      </section>
+
+      <section class="connection-strip" aria-label="The essentials">
+        <div>
+          <i data-lucide="wifi"></i><span>Your network, not the cloud</span>
+        </div>
+        <div>
+          <i data-lucide="user-round-check"></i
+          ><span>No account to create</span>
+        </div>
+        <div>
+          <i data-lucide="scan-line"></i><span>One scan to get started</span>
+        </div>
+      </section>
+
+      <section
+        class="feature-section section-width"
+        id="features"
+        aria-labelledby="features-heading"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">BETTER BETWEEN DEVICES</p>
+          <h2 id="features-heading">
+            Keep your devices.<br /><em>Lose the back-and-forth.</em>
+          </h2>
+          <p>
+            Your favorite phone and your favorite computer.<br />They should be
+            on the same team.
+          </p>
+        </div>
+        <div
+          class="feature-tabs"
+          role="tablist"
+          aria-label="Explore AirBridge features"
+        >
+          <button
+            role="tab"
+            id="tab-files"
+            aria-controls="panel-files"
+            aria-selected="true"
+          >
+            <i data-lucide="files"></i>Files
+          </button>
+          <button
+            role="tab"
+            id="tab-clipboard"
+            aria-controls="panel-clipboard"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            <i data-lucide="clipboard"></i>Clipboard
+          </button>
+          <button
+            role="tab"
+            id="tab-notifications"
+            aria-controls="panel-notifications"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            <i data-lucide="bell"></i>Notifications
+          </button>
+          <button
+            role="tab"
+            id="tab-mirroring"
+            aria-controls="panel-mirroring"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            <i data-lucide="picture-in-picture-2"></i>Mirroring
+          </button>
+        </div>
+        <div
+          class="feature-panel"
+          id="panel-files"
+          role="tabpanel"
+          aria-labelledby="tab-files"
+          tabindex="0"
+        >
+          <div class="feature-copy">
+            <span class="feature-number">01 / A TWO-WAY STREET</span>
+            <h3>From here<br />to <em>there.</em></h3>
+            <p>
+              A photo on your phone. A PDF on your Mac. Send either one from the
+              share menu you already use.
+            </p>
+            <ul class="check-list">
+              <li>
+                <i data-lucide="check"></i>Send from Finder or Android's share
+                sheet
+              </li>
+              <li>
+                <i data-lucide="check"></i>Original files, over your local
+                network
+              </li>
+              <li>
+                <i data-lucide="check"></i>You choose what to accept on Android
+              </li>
+            </ul>
+            <a class="text-link" href="/guide/#files"
+              >The file-sharing guide <i data-lucide="arrow-up-right"></i
+            ></a>
+          </div>
+          <figure class="product-figure">
+            <div class="window-bar" aria-hidden="true">
+              <span></span><span></span><span></span
+              ><small>AirBridge on Mac</small>
+            </div>
+            <img
+              data-themed="mac-transfers"
+              src="/images/mac-transfers-light.webp"
+              width="1020"
+              height="722"
+              loading="lazy"
+              alt="AirBridge's Transfers page with incoming and outgoing files, progress, and Finder actions."
+            />
+            <figcaption>Real app screen, with sample files.</figcaption>
+          </figure>
+        </div>
+        <div
+          class="feature-panel"
+          id="panel-clipboard"
+          role="tabpanel"
+          aria-labelledby="tab-clipboard"
+          tabindex="0"
+          hidden
+        >
+          <div class="feature-copy">
+            <span class="feature-number">02 / PICK UP WHERE YOU LEFT OFF</span>
+            <h3>Copy on one.<br /><em>Paste on the other.</em></h3>
+            <p>
+              That address, the perfect screenshot, a note for later. Text and
+              images can move between your devices without a message to
+              yourself.
+            </p>
+            <ul class="check-list">
+              <li>
+                <i data-lucide="check"></i>Text, PNG, and JPEG clipboard support
+              </li>
+              <li>
+                <i data-lucide="check"></i>Opt in separately on each device
+              </li>
+              <li><i data-lucide="check"></i>No saved clipboard history</li>
+            </ul>
+            <p class="feature-note">
+              Android-to-Mac sync needs AirBridge in front, the optional
+              AirBridge keyboard, or Shizuku for background text. Image paste
+              support varies by app.
+            </p>
+            <a class="text-link" href="/guide/#clipboard"
+              >Choose your clipboard setup <i data-lucide="arrow-up-right"></i
+            ></a>
+          </div>
+          <figure class="clipboard-visual">
+            <div class="visual-label">
+              <i data-lucide="monitor"></i> On your Mac
+            </div>
+            <div class="note-sheet">
+              <span class="note-date">A PLAN FOR SATURDAY</span>
+              <p>Good coffee.<br />A long walk.<br /><em>No rush.</em></p>
+              <div class="note-bottom">
+                <i data-lucide="clipboard-check"></i>Copied to clipboard
+              </div>
+            </div>
+            <div class="transfer-path" aria-hidden="true">
+              <span></span><i data-lucide="arrow-down-up"></i><span></span>
+            </div>
+            <div class="paste-strip">
+              <i data-lucide="smartphone"></i
+              ><span>Ready to paste on Android</span><i data-lucide="check"></i>
+            </div>
+            <figcaption>Illustration of Mac-to-Android text sync.</figcaption>
+          </figure>
+        </div>
+        <div
+          class="feature-panel"
+          id="panel-notifications"
+          role="tabpanel"
+          aria-labelledby="tab-notifications"
+          tabindex="0"
+          hidden
+        >
+          <div class="feature-copy">
+            <span class="feature-number">03 / STAY IN THE MOMENT</span>
+            <h3>A heads-up.<br /><em>Not a phone pickup.</em></h3>
+            <p>
+              See the Android notifications you choose as native Mac alerts.
+              Reply to supported messages right from the notification.
+            </p>
+            <ul class="check-list">
+              <li>
+                <i data-lucide="check"></i>Choose which apps can reach your Mac
+              </li>
+              <li>
+                <i data-lucide="check"></i>Message previews are off by default
+              </li>
+              <li>
+                <i data-lucide="check"></i>No notification history stored by
+                AirBridge
+              </li>
+            </ul>
+            <p class="feature-note">
+              Replies depend on the source app. Call alerts are supported;
+              answering calls and call audio on Mac are not.
+            </p>
+            <a class="text-link" href="/guide/#notifications"
+              >Set up your notifications <i data-lucide="arrow-up-right"></i
+            ></a>
+          </div>
+          <figure class="notification-visual">
+            <p class="visual-label">
+              <i data-lucide="bell"></i> Just the things that matter
+            </p>
+            <div class="notification-example">
+              <div class="notification-top">
+                <img
+                  src="/images/logo.webp"
+                  width="38"
+                  height="38"
+                  alt=""
+                /><span
+                  ><b>Messages via AirBridge</b
+                  ><small>From your Android phone</small></span
+                ><small>now</small>
+              </div>
+              <h4>Maya</h4>
+              <p>Coffee at 4? I know a good place.</p>
+              <div class="notification-reply">
+                <span>Sounds good, see you there!</span
+                ><i data-lucide="arrow-up" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="notification-controls">
+              <i data-lucide="sliders-horizontal"></i>
+              <p>Your apps.<br /><strong>Your call.</strong></p>
+              <span class="example-switch" aria-hidden="true"></span>
+            </div>
+            <figcaption>
+              Example message. Requires preview permission and a supported reply
+              action.
+            </figcaption>
+          </figure>
+        </div>
+        <div
+          class="feature-panel"
+          id="panel-mirroring"
+          role="tabpanel"
+          aria-labelledby="tab-mirroring"
+          tabindex="0"
+          hidden
+        >
+          <div class="feature-copy">
+            <span class="feature-number">04 / A LITTLE MORE SCREEN</span>
+            <h3>Your phone.<br /><em>A bigger picture.</em></h3>
+            <p>
+              Bring your Android screen onto your Mac over Wi-Fi. Handy for
+              walking through an app or sharing something small on a bigger
+              display.
+            </p>
+            <ul class="check-list">
+              <li>
+                <i data-lucide="check"></i>No cable or debugging for Wi-Fi
+                viewing
+              </li>
+              <li>
+                <i data-lucide="check"></i>You start it. You approve every
+                session.
+              </li>
+              <li><i data-lucide="check"></i>Stop from either device</li>
+            </ul>
+            <p class="feature-note">
+              Wi-Fi mode is view-only, without audio or recording. Optional
+              control uses a separate debugging setup.
+            </p>
+            <a class="text-link" href="/guide/#mirroring"
+              >See the mirroring setup <i data-lucide="arrow-up-right"></i
+            ></a>
+          </div>
+          <figure class="product-figure">
+            <div class="window-bar" aria-hidden="true">
+              <span></span><span></span><span></span
+              ><small>AirBridge on Mac</small>
+            </div>
+            <img
+              data-themed="mac-mirroring"
+              src="/images/mac-mirroring-light.webp"
+              width="1020"
+              height="722"
+              loading="lazy"
+              alt="The AirBridge screen mirroring page, with an explicit Start button and Wi-Fi mode selected."
+            />
+            <figcaption>Screen sharing starts only when you ask.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="privacy-band" aria-labelledby="privacy-heading">
+        <div class="section-width privacy-inner">
+          <div class="privacy-symbol" aria-hidden="true">
+            <i data-lucide="fingerprint"></i>
+          </div>
+          <div>
+            <p class="eyebrow">A SHORTER ROUTE IS A BETTER ROUTE</p>
+            <h2 id="privacy-heading">
+              Across your desk.<br /><em>Not across the internet.</em>
+            </h2>
+            <p>
+              Your paired devices communicate directly over your local network,
+              using a pinned TLS connection. No account. No cloud relay for your
+              files.
+            </p>
+            <a class="text-link" href="/privacy/"
+              >A closer look at privacy <i data-lucide="arrow-up-right"></i
+            ></a>
+          </div>
+          <div class="privacy-facts">
+            <div>
+              <span>01</span>
+              <p>Pairing is yours<b>A QR code establishes trust.</b></p>
+            </div>
+            <div>
+              <span>02</span>
+              <p>Permission is yours<b>Turn on only what you need.</b></p>
+            </div>
+            <div>
+              <span>03</span>
+              <p>Control stays yours<b>Remove a device at any time.</b></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="setup-section section-width"
+        id="setup"
+        aria-labelledby="setup-heading"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">FROM TWO DEVICES TO ONE TEAM</p>
+          <h2 id="setup-heading">
+            A simple introduction.<br /><em>A lasting connection.</em>
+          </h2>
+        </div>
+        <ol class="setup-steps">
+          <li>
+            <span class="step-index">01</span>
+            <div class="step-illustration">
+              <i data-lucide="monitor-down"></i><span class="step-plus">+</span
+              ><i data-lucide="smartphone"></i>
+            </div>
+            <h3>Meet on the same Wi-Fi.</h3>
+            <p>
+              Install AirBridge on your Mac and Android phone. Connect them to
+              the same local network.
+            </p>
+          </li>
+          <li>
+            <span class="step-index">02</span>
+            <div class="step-illustration">
+              <i data-lucide="qr-code"></i
+              ><span class="step-scan" aria-hidden="true"></span>
+            </div>
+            <h3>One scan. Hello, Mac.</h3>
+            <p>
+              Choose Pair a phone on Mac, then scan its QR code in AirBridge on
+              Android.
+            </p>
+          </li>
+          <li>
+            <span class="step-index">03</span>
+            <div class="step-illustration">
+              <i data-lucide="toggle-right"></i><i data-lucide="sparkles"></i>
+            </div>
+            <h3>Make the connection yours.</h3>
+            <p>
+              Choose clipboard sync, notifications, or screen-sharing requests.
+              Nothing turns on without you.
+            </p>
+          </li>
+        </ol>
+        <a class="text-link setup-link" href="/guide/"
+          >Read the full setup guide <i data-lucide="arrow-up-right"></i
+        ></a>
+      </section>
+
+      <section
+        class="faq-section section-width"
+        id="questions"
+        aria-labelledby="faq-heading"
+      >
+        <div>
+          <p class="eyebrow">THE SMALL PRINT, WITHOUT THE SQUINT</p>
+          <h2 id="faq-heading">Good to<br /><em>know.</em></h2>
+          <p>A few things before<br />your devices meet.</p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>What do I need?<i data-lucide="plus"></i></summary>
+            <p>
+              A Mac running macOS 14 or later, an Android phone running Android
+              8 or later, and both devices on the same Wi-Fi or local network.
+              Keep the Mac app running. Guest-network isolation, VPNs, or
+              firewalls can prevent devices from connecting.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Do I need an account or internet connection?<i
+                data-lucide="plus"
+              ></i>
+            </summary>
+            <p>
+              No account is required. Once both apps are installed, pairing and
+              transfers happen over your local network without a cloud service.
+              You do need a local connection between the devices.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Do I need root, Shizuku, or USB debugging?<i
+                data-lucide="plus"
+              ></i>
+            </summary>
+            <p>
+              Not for file sharing, notifications, or view-only Wi-Fi mirroring.
+              For automatic Android-to-Mac text clipboard sync, you can use the
+              optional AirBridge keyboard or Shizuku. Without either, bring
+              AirBridge to the foreground to send copied content. The optional
+              scrcpy control mode requires debugging.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Can I keep using Gboard?<i data-lucide="plus"></i>
+            </summary>
+            <p>
+              Yes. The AirBridge keyboard is optional. With Gboard, bring
+              AirBridge forward after copying to sync to Mac, or use optional
+              Shizuku for background text sync. Background image access still
+              depends on Android's URI permissions.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Can I answer phone calls on my Mac?<i data-lucide="plus"></i>
+            </summary>
+            <p>
+              You can see call alerts from selected phone apps. Answering calls
+              and using your Mac's microphone or speakers for a phone call are
+              not supported.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Where can I download it?<i data-lucide="plus"></i>
+            </summary>
+            <p>
+              AirBridge is currently in private preview, not yet a public App
+              Store or Play Store release. The download panel shows available
+              builds when published.
+              <button class="inline-link" data-download>
+                Check build availability</button
+              >.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="closing-section">
+        <img
+          src="/images/logo.webp"
+          width="76"
+          height="76"
+          alt="AirBridge app icon"
+          loading="lazy"
+        />
+        <p class="eyebrow">KEEP WHAT YOU LOVE. CONNECT THE REST.</p>
+        <h2>Different devices.<br /><em>Better together.</em></h2>
+        <button class="button" data-download>
+          Get AirBridge <i data-lucide="arrow-down-to-line"></i>
+        </button>
+        <p class="closing-meta">
+          Built for Mac. Made for Android. Yours to connect.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer section-width">
+      <div class="footer-top">
+        <a class="brand" href="#"
+          ><img
+            src="/images/logo.webp"
+            width="32"
+            height="32"
+            alt=""
+          />AirBridge</a
+        >
+        <p>A bridge, not another ecosystem.</p>
+        <nav aria-label="Footer navigation">
+          <a href="/guide/">Setup guide</a><a href="/privacy/">Privacy</a
+          ><a href="#questions">Questions</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span data-year>2026</span> AirBridge</span
+        ><span>Independently built. Thoughtfully connected.</span
+        ><button class="text-link" data-top>
+          Back to top <i data-lucide="arrow-up"></i>
+        </button>
+      </div>
+    </footer>
+    <div id="dialog-root"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

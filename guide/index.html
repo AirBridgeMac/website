@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Set up AirBridge for Mac and Android: QR pairing, local file sharing, clipboard sync, notifications, and wireless screen mirroring."
+    />
+    <meta name="theme-color" content="#f6f8f6" />
+    <link rel="icon" href="/images/favicon.png" />
+    <title>Getting started - AirBridge</title>
+    <script src="/theme.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-wrap">
+        <a class="brand" href="/" aria-label="AirBridge home"
+          ><img
+            src="/images/logo.webp"
+            width="36"
+            height="36"
+            alt=""
+          />AirBridge</a
+        >
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="/#features">The connection</a
+          ><a href="/guide/" aria-current="page">Getting started</a
+          ><a href="/#questions">Good to know</a>
+        </nav>
+        <div class="nav-actions">
+          <button
+            class="icon-button theme-toggle"
+            aria-label="Switch to dark mode"
+            title="Switch to dark mode"
+          >
+            <i data-lucide="moon"></i></button
+          ><button class="button button-small" data-download>
+            Get AirBridge <i data-lucide="arrow-up-right"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <div class="document-header">
+        <a class="text-link" href="/"
+          >AirBridge <i data-lucide="arrow-up-right"></i
+        ></a>
+        <h1>A good connection<br /><em>starts here.</em></h1>
+        <p>Your guide to bringing Mac and Android a little closer.</p>
+      </div>
+      <article class="document-content">
+        <nav class="document-toc" aria-label="Setup guide sections">
+          <a href="#pairing">Pairing</a><a href="#files">Files</a
+          ><a href="#clipboard">Clipboard</a
+          ><a href="#notifications">Notifications</a
+          ><a href="#mirroring">Mirroring</a
+          ><a href="#troubleshooting">Troubleshooting</a>
+        </nav>
+        <section id="pairing">
+          <h2>First, introduce your devices.</h2>
+          <p>
+            You need macOS 14 or later and Android 8 or later. Install AirBridge
+            on both devices and connect them to the same local network.
+            <strong>AirBridge is currently in private preview.</strong> Public
+            store releases and a notarized Mac download are not yet available.
+          </p>
+          <ol>
+            <li>
+              Open AirBridge on your Mac and choose
+              <strong>Pair a phone</strong>. Allow local-network access if macOS
+              asks.
+            </li>
+            <li>
+              On Android, choose <strong>Pair a Mac</strong>, then
+              <strong>Scan QR code</strong>. Grant camera access when asked.
+            </li>
+            <li>
+              Scan the current code shown on the Mac. Check the Mac's name and
+              confirm pairing. You can also paste an AirBridge pairing link.
+            </li>
+            <li>
+              Keep the Mac app running. Closing its window leaves AirBridge in
+              the menu bar; quitting the app stops the connection.
+            </li>
+          </ol>
+          <p>
+            Pairing codes expire and can be used only once. Generate a fresh one
+            if needed. Your phone remembers one Mac at a time.
+          </p>
+        </section>
+        <section id="files">
+          <h2>Send something across.</h2>
+          <h3>Android to Mac</h3>
+          <p>
+            In Gallery or Files, select what to send, choose
+            <strong>Share &gt; AirBridge</strong>, and tap your Mac. Android may
+            also offer your paired Mac directly in the share sheet. You can
+            still send from the Files tab in AirBridge.
+          </p>
+          <h3>Mac to Android</h3>
+          <p>
+            Enable <strong>Receive files from Mac</strong> in Android and allow
+            incoming-file notifications. In Finder, choose files, then
+            <strong>Share &gt; AirBridge</strong>. Select your phone, send, and
+            accept the request on Android.
+          </p>
+          <p>
+            Finder sharing requires a signed Mac build with the Share extension.
+            After launching it once, check macOS Sharing extensions if AirBridge
+            is missing from the share menu.
+          </p>
+          <p>
+            Completed files appear in <strong>Downloads/AirBridge</strong> on
+            Android 10 or later. Android 8/9 stores them privately in AirBridge;
+            uninstalling removes those files. On Mac, the default location is
+            <strong>Downloads/AirBridge</strong>. Use the app's Finder action to
+            locate them. Interrupted transfers are not automatically resumed.
+          </p>
+        </section>
+        <section id="clipboard">
+          <h2>Copy here. Paste there.</h2>
+          <p>
+            Enable <strong>Clipboard sync</strong> beside your phone on Mac,
+            then enable it in Android. Allow AirBridge's connection notification
+            and keep your phone unlocked.
+          </p>
+          <ul>
+            <li>
+              <strong>Mac to Android:</strong> new copied text and supported
+              images can arrive while AirBridge is in the background. Paste into
+              an app that supports that content.
+            </li>
+            <li>
+              <strong>Android to Mac:</strong> copy the content, then bring
+              AirBridge to the foreground. To avoid this step for text, use the
+              optional AirBridge keyboard as your active keyboard, or optional
+              Shizuku.
+            </li>
+            <li>
+              <strong>Images:</strong> one PNG or JPEG, up to 10 MiB and 16
+              megapixels. Pasting depends on the receiving app. Background
+              Android image access also depends on URI permissions; Shizuku does
+              not guarantee background image access.
+            </li>
+          </ul>
+          <p>
+            The optional keyboard is not required for the rest of AirBridge. You
+            can keep using Gboard. For apps that only offer Share, share a
+            single PNG or JPEG to AirBridge and choose
+            <strong>Copy to Mac</strong>. Enable clipboard sync for that phone
+            on Mac. This sends the image to the Mac clipboard without reading or
+            replacing Android's clipboard.
+          </p>
+          <p>
+            AirBridge honors sensitive clipboard markers, but apps do not mark
+            every secret. Turn sync off before copying content you do not want
+            to share. Clipboard history is not saved.
+          </p>
+        </section>
+        <section id="notifications">
+          <h2>Choose what reaches your Mac.</h2>
+          <ol>
+            <li>
+              Enable <strong>Notifications</strong> beside your phone in the Mac
+              app. Allow Mac alerts and choose Banners or Alerts in macOS
+              notification settings.
+            </li>
+            <li>
+              On Android, open <strong>Notification settings</strong>, enable
+              forwarding, and grant <strong>Notification access</strong>.
+            </li>
+            <li>
+              Open <strong>Apps shown on Mac</strong> and select the apps you
+              want. None are selected by default.
+            </li>
+            <li>
+              Optionally enable <strong>Show message previews</strong>. Without
+              that permission, message content stays hidden.
+            </li>
+          </ol>
+          <p>
+            Supported message notifications offer Reply on Mac. Previews must be
+            enabled and the phone unlocked. The source app must support
+            free-form notification replies; delivery and background sending
+            depend on that app. AirBridge handing off a reply is not
+            confirmation of recipient delivery.
+          </p>
+          <p>
+            Calls can show ringing alerts from selected phone apps.
+            <strong
+              >You cannot answer calls or route call audio through your
+              Mac.</strong
+            >
+            Focus, Do Not Disturb, and notification settings can suppress
+            banners.
+          </p>
+        </section>
+        <section id="mirroring">
+          <h2>A bigger view, when you ask.</h2>
+          <ol>
+            <li>
+              On Android, open <strong>Screen sharing</strong>, enable
+              <strong>Screen-sharing requests</strong>, and allow notifications.
+            </li>
+            <li>
+              On Mac, select your phone in <strong>Screen mirroring</strong> and
+              click <strong>Start</strong>.
+            </li>
+            <li>
+              Tap <strong>Share screen</strong> in the Android notification and
+              approve the system capture prompt. You can also approve from
+              AirBridge.
+            </li>
+            <li>Stop on either device, or close the Mac mirror window.</li>
+          </ol>
+          <p>
+            <strong>Wi-Fi mode is view-only.</strong> It does not need root,
+            Shizuku, or USB debugging, and it does not include audio, recording,
+            or mouse/keyboard control. Protected screens stay protected. Every
+            session needs a fresh approval; reconnecting never restarts it
+            automatically.
+          </p>
+          <p>
+            An optional scrcpy mode supports control with a separate USB or
+            wireless debugging setup. That is not the ordinary Wi-Fi viewing
+            mode.
+          </p>
+        </section>
+        <section id="troubleshooting">
+          <h2>Not connecting?</h2>
+          <ul>
+            <li>
+              Check that both devices are on the same network, not just that
+              both have internet access.
+            </li>
+            <li>
+              Keep the Mac app running. Check local-network permission and
+              firewall access.
+            </li>
+            <li>
+              Guest Wi-Fi, client isolation, VPN routing, and blocked multicast
+              can prevent discovery.
+            </li>
+            <li>
+              Reopen AirBridge on Android after a reboot or force-stop to resume
+              enabled background features.
+            </li>
+            <li>
+              Check manufacturer battery restrictions if background connections
+              stop unexpectedly.
+            </li>
+            <li>
+              After reinstalling Android, pair again. On Mac, remove the old
+              phone record to revoke its previous pairing.
+            </li>
+          </ul>
+          <p>
+            Automatic reconnection supports ordinary address changes, but cannot
+            bypass a blocked network or repair a revoked pairing.
+          </p>
+        </section>
+      </article>
+    </main>
+    <footer class="site-footer section-width">
+      <div class="footer-top">
+        <a class="brand" href="/"
+          ><img
+            src="/images/logo.webp"
+            width="32"
+            height="32"
+            alt=""
+          />AirBridge</a
+        >
+        <p>A bridge, not another ecosystem.</p>
+        <nav aria-label="Footer navigation">
+          <a href="/">Home</a><a href="/privacy/">Privacy</a
+          ><a href="/#questions">Questions</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span data-year>2026</span> AirBridge</span
+        ><span>Independently built. Thoughtfully connected.</span
+        ><button class="text-link" data-top>
+          Back to top <i data-lucide="arrow-up"></i>
+        </button>
+      </div>
+    </footer>
+    <div id="dialog-root"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

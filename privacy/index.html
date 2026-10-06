@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="How the AirBridge preview handles pairing, files, clipboard data, notifications, and screen sharing."
+    />
+    <meta name="theme-color" content="#f6f8f6" />
+    <link rel="icon" href="/images/favicon.png" />
+    <title>Privacy, plainly - AirBridge</title>
+    <script src="/theme.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-wrap">
+        <a class="brand" href="/" aria-label="AirBridge home"
+          ><img
+            src="/images/logo.webp"
+            width="36"
+            height="36"
+            alt=""
+          />AirBridge</a
+        >
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="/#features">The connection</a
+          ><a href="/guide/">Getting started</a
+          ><a href="/#questions">Good to know</a>
+        </nav>
+        <div class="nav-actions">
+          <button
+            class="icon-button theme-toggle"
+            aria-label="Switch to dark mode"
+            title="Switch to dark mode"
+          >
+            <i data-lucide="moon"></i></button
+          ><button class="button button-small" data-download>
+            Get AirBridge <i data-lucide="arrow-up-right"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <div class="document-header">
+        <a class="text-link" href="/"
+          >AirBridge <i data-lucide="arrow-up-right"></i
+        ></a>
+        <h1>Privacy,<br /><em>plainly.</em></h1>
+        <p>
+          What the current AirBridge preview does with your data. Updated
+          October 6, 2026.
+        </p>
+      </div>
+      <article class="document-content">
+        <section>
+          <h2>A direct connection.</h2>
+          <p>
+            AirBridge pairs your Mac and Android phone for communication over
+            your local network. It does not require an account or relay your
+            files through an AirBridge cloud service. Pairing establishes a
+            pinned TLS connection; the QR code carries the identity information
+            used to verify your Mac.
+          </p>
+          <p>
+            Your Mac keeps its receiver identity and paired-device records
+            locally, storing device-token hashes rather than the original
+            tokens. Android encrypts its pairing credential using Android
+            Keystore. Removing the phone on Mac revokes its access. Forgetting a
+            Mac only on Android does not revoke the Mac's existing phone record.
+          </p>
+        </section>
+        <section>
+          <h2>Files stay where you send them.</h2>
+          <p>
+            Accepted files are saved on the receiving device. Mac-to-Android
+            sending temporarily stages files in private Mac storage. Completion,
+            cancellation, expiry, and normal shutdown clean up those temporary
+            copies. A crash can leave partial or staged files that require later
+            cleanup.
+          </p>
+          <p>
+            On Android 10 or later, received files in Downloads survive
+            uninstalling AirBridge. Android 8/9 uses app-private storage, which
+            is removed on uninstall. Android's recent-file list retains up to
+            fifty file links; Mac transfer history is in memory. Files you send,
+            download, open, or share with other apps can be retained by those
+            apps.
+          </p>
+        </section>
+        <section>
+          <h2>A clipboard, not a history.</h2>
+          <p>
+            Clipboard sync is opt-in. AirBridge does not log or save text
+            clipboard history. Only the latest update is buffered temporarily;
+            disconnected copies are not replayed later. Mac image conversion
+            stays in memory.
+          </p>
+          <p>
+            Android temporarily caches a received clipboard image behind a
+            read-only provider, with a ten-minute paste window. The cache is
+            cleared on replacement, expiry while running, or explicit
+            disable/forget. After an interrupted process, cleanup happens on
+            next startup or access. An app you paste into may retain its own
+            copy.
+          </p>
+          <p>
+            Content marked sensitive is excluded, but not every app marks
+            sensitive content. Do not assume all passwords or private text will
+            be recognized automatically.
+          </p>
+        </section>
+        <section>
+          <h2>Your notifications, by permission.</h2>
+          <p>
+            You choose the Android apps that can forward notifications. Message
+            previews are off by default and hidden while the phone is locked.
+            Android-protected notification content is not bypassed.
+          </p>
+          <p>
+            AirBridge stores no notification title/body history. Active
+            notifications are held in memory, while app-selection preferences
+            and a bounded catalog of observed app names persist locally. macOS
+            may retain delivered alerts in Notification Center, especially after
+            a forced app shutdown. Its lock-screen and preview settings also
+            apply.
+          </p>
+          <p>
+            Replies stay in memory while being dispatched and are not saved by
+            AirBridge. The receiving messaging app processes and retains replies
+            according to its own behavior.
+          </p>
+        </section>
+        <section>
+          <h2>Screen sharing is always explicit.</h2>
+          <p>
+            Wi-Fi screen sharing requires a manual start and fresh Android
+            approval for every session. AirBridge does not save frames or
+            consent tokens, and does not record audio. It does not automatically
+            restart capture after reconnecting. Protected content remains
+            protected.
+          </p>
+        </section>
+        <section>
+          <h2>This website.</h2>
+          <p>
+            This version of the website includes no analytics, tracking pixels,
+            advertising scripts, or account forms. Fonts and product images are
+            served with the site. If you choose light or dark mode, that
+            preference is saved in this browser's local storage.
+          </p>
+          <p>
+            Visiting any hosted website sends basic request information,
+            including your IP address, to its hosting provider. Any future
+            public hosting or release-download provider may keep access logs
+            under its own policies. Download links, once configured, take you to
+            the release host. No download provider or public deployment is
+            configured in this initial site.
+          </p>
+        </section>
+        <section>
+          <h2>Change your mind at any time.</h2>
+          <p>
+            Turn off individual features in either app. Revoke Android
+            notification or camera permissions through system settings. Remove a
+            phone in the Mac app to revoke its pairing. Shared or received files
+            are separate from these permissions; delete those files from their
+            saved location when you no longer need them.
+          </p>
+          <p>
+            This describes the current preview implementation, not a security
+            audit or a promise about future releases. See the
+            <a href="/guide/">setup guide</a> for feature-specific controls and
+            limitations.
+          </p>
+        </section>
+      </article>
+    </main>
+    <footer class="site-footer section-width">
+      <div class="footer-top">
+        <a class="brand" href="/"
+          ><img
+            src="/images/logo.webp"
+            width="32"
+            height="32"
+            alt=""
+          />AirBridge</a
+        >
+        <p>A bridge, not another ecosystem.</p>
+        <nav aria-label="Footer navigation">
+          <a href="/">Home</a><a href="/guide/">Setup guide</a
+          ><a href="/#questions">Questions</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span data-year>2026</span> AirBridge</span
+        ><span>Independently built. Thoughtfully connected.</span
+        ><button class="text-link" data-top>
+          Back to top <i data-lucide="arrow-up"></i>
+        </button>
+      </div>
+    </footer>
+    <div id="dialog-root"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
