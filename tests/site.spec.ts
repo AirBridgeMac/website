@@ -89,45 +89,14 @@ test("home has working assets, no external tracking, and responsive light/dark l
   expect(external).toEqual([]);
 });
 
-test("feature demo loads and plays as a local video", async ({ page }) => {
+test("hero points to the integrated feature walkthrough", async ({ page }) => {
   await page.goto(sitePath("/"));
-  const video = page.locator(".demo-video");
-  await video.scrollIntoViewIfNeeded();
-  await expect(video).toBeVisible();
-  const bounds = await video.boundingBox();
-  expect(bounds).not.toBeNull();
-  expect(bounds!.width / bounds!.height).toBeCloseTo(16 / 9, 1);
-  await expect(video.locator("source")).toHaveAttribute(
-    "src",
-    sitePath("/media/airbridge-features.mp4"),
-  );
-  const poster = await video.getAttribute("poster");
-  expect(poster).toBe(sitePath("/images/features-demo-poster.webp"));
-  const posterResponse = await page.request.get(poster!);
-  expect(posterResponse.ok()).toBeTruthy();
-  await video.evaluate((element: HTMLVideoElement) => element.load());
-  await expect
-    .poll(() =>
-      video.evaluate((element: HTMLVideoElement) => element.readyState),
-    )
-    .toBeGreaterThan(0);
-  const metadata = await video.evaluate((element: HTMLVideoElement) => ({
-    duration: element.duration,
-    width: element.videoWidth,
-    height: element.videoHeight,
-  }));
-  expect(metadata.duration).toBeGreaterThan(17);
-  expect(metadata.width).toBe(1280);
-  expect(metadata.height).toBe(720);
-  await video.evaluate(async (element: HTMLVideoElement) => {
-    element.muted = true;
-    await element.play();
-  });
-  await expect
-    .poll(() =>
-      video.evaluate((element: HTMLVideoElement) => element.currentTime),
-    )
-    .toBeGreaterThan(0.05);
+  const link = page.getByRole("link", { name: "Take a closer look" });
+  await expect(link).toHaveAttribute("href", "#features");
+  await link.click();
+  await expect(page).toHaveURL(/#features$/);
+  await expect(page.locator("#features")).toBeInViewport();
+  await expect(page.locator("video")).toHaveCount(0);
 });
 
 test("feature tabs support pointer and arrow-key navigation without moving focus into hidden content", async ({

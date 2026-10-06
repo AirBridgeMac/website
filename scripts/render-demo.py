@@ -528,10 +528,11 @@ def main():
             frame(at).save(folder / f"{name}.png")
         print(f"Preview stills: {folder}")
         return
-    poster = ROOT / "public/images/features-demo-poster.webp"
+    media = ROOT / "artifacts/demo-media"
+    media.mkdir(parents=True, exist_ok=True)
+    poster = media / "features-demo-poster.webp"
     frame(STARTS[1] + 1.35).save(poster, "WEBP", quality=88, method=6)
-    output = ROOT / "public/media/airbridge-features.mp4"
-    output.parent.mkdir(parents=True, exist_ok=True)
+    output = media / "airbridge-features.mp4"
     command = [
         "ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-f", "rawvideo",
         "-pix_fmt", "rgb24", "-s", "1280x720", "-r", str(FPS), "-i", "-",
