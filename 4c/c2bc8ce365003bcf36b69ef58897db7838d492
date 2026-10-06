@@ -1,0 +1,66 @@
+scripts/prepare-assets.py
+  s_dd62d74508ad68::t_5e919491724221 1-39,41-55,58-62,66-68
+  s_dd62d74508ad68::t_e61590f3ceb96d 40,56-57,63-65
+index.html
+  s_dd62d74508ad68::t_5e919491724221 1-103
+  s_dd62d74508ad68::t_fa7a9c7cab3137 104-637
+privacy/index.html
+  s_dd62d74508ad68::t_8da68bf891ebdd 1-13
+  s_dd62d74508ad68::t_35f0c94087ff10 14-207
+public/theme.js
+  s_dd62d74508ad68::t_5e919491724221 1-6
+  s_dd62d74508ad68::t_88823e086c02a7 7-11
+src/style.css
+  s_dd62d74508ad68::t_2e4cebfe861827 1-2,4-1879,1882-1919,1923-1987
+  s_dd62d74508ad68::t_0b5d2728fed8b8 1880-1881
+  s_dd62d74508ad68::t_d7f3c14820ce58 3
+  s_dd62d74508ad68::t_cb4e31d1d4ef17 1920-1922
+vite.config.ts
+  s_dd62d74508ad68::t_8da68bf891ebdd 1-14
+  s_dd62d74508ad68::t_fa607c94b1b853 15-16
+playwright.config.ts
+  s_dd62d74508ad68::t_0b5d2728fed8b8 1-18
+  s_dd62d74508ad68::t_31901ba9b8e37d 19-31
+src/main.ts
+  s_dd62d74508ad68::t_f2de844e2f7ad4 1-32,34-65,67-68,70-75,77,79,81,83,85-91,95-97,99-103,105-107,110-111,115-120,123-131,133-140,142-144,148,150,152-154,160-171,173-174,180,183-188,194,205,209-213,215-217,220-221,223,225-241,247,250,253-255,257-268,271-283
+  s_dd62d74508ad68::t_2e4cebfe861827 92,242-246,248-249,251-252
+  s_dd62d74508ad68::t_0b5d2728fed8b8 132
+  s_dd62d74508ad68::t_d7f3c14820ce58 33,66,69,76,78,80,82,84,93-94,98,104,108-109,112-114,121-122,141,145-147,149,151,155-159,172,175-179,181-182,189-193,195-204,206-208,214,218-219,222,224,256,269-270,284-285
+THIRD_PARTY_NOTICES.md
+  s_dd62d74508ad68::t_f2de844e2f7ad4 1-9
+tests/site.spec.ts
+  s_dd62d74508ad68::t_0b5d2728fed8b8 1-132
+  s_dd62d74508ad68::t_614fd88d5bdad2 133-235
+guide/index.html
+  s_dd62d74508ad68::t_8da68bf891ebdd 1-2
+  s_dd62d74508ad68::t_e61590f3ceb96d 3-292
+  s_dd62d74508ad68::t_b3c366be8a865a 293
+README.md
+  s_dd62d74508ad68::t_e61590f3ceb96d 1-59
+package-lock.json
+  s_dd62d74508ad68::t_a7cb613c9222cf 1-1338
+package.json
+  s_dd62d74508ad68::t_2177cb2e92cce9 1-25
+public/licenses/dm-sans.txt
+  s_dd62d74508ad68::t_fdb3aee5c338ae 1-93
+public/licenses/instrument-serif.txt
+  s_dd62d74508ad68::t_a0443d6beaa5b7 1-93
+public/licenses/lucide.txt
+  s_dd62d74508ad68::t_9b3ea03079fe83 1-43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4cc2bc8ce365003bcf36b69ef58897db7838d492",
+  "prompts": {},
+  "sessions": {
+    "s_dd62d74508ad68": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f0d4-637d-7453-85cd-11ee9eed1aa8",
+        "model": "gpt-6-sol"
+      },
+      "human_author": "shubhindia <shubhindia123@gmail.com>"
+    }
+  }
+}
