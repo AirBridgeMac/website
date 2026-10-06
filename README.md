@@ -50,7 +50,11 @@ It preserves screen proportions and creates light/dark hero compositions. Existi
 
 ## Deployment
 
-`npm run build` produces the static site in `dist/`. Host it on a service that serves directory indexes (`/guide/` and `/privacy/`). No server or SPA fallback is required. No domain, hosting project, remote repository, or deployment is created by this project.
+`npm run build` produces the static site in `dist/`. No server or SPA fallback is required. The GitHub Pages workflow in `.github/workflows/deploy.yml` builds and deploys the site when `main` is pushed. It uses the base path reported by GitHub Pages, so a project URL such as `https://OWNER.github.io/airbridge-site/` and a root custom domain both work.
+
+To publish, create a GitHub repository for this site, select **GitHub Actions** under **Settings > Pages > Build and deployment > Source**, then push `main`. The workflow publishes `dist/` automatically. This local repository has no remote or public deployment configured yet.
+
+To check the project-path version locally, run `SITE_BASE_PATH=/airbridge-site npm run build` followed by `SITE_BASE_PATH=/airbridge-site npm test`. Build again without `SITE_BASE_PATH` for the normal root-path preview.
 
 Before a public launch: finalize the distribution/signing workflow, review privacy wording for the chosen hosting provider, set the public canonical URL and social image URL once a domain is selected, and verify every download. App screenshots reflect a development preview and should be refreshed for the release.
 

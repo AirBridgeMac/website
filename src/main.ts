@@ -64,6 +64,7 @@ const iconSet = {
 const renderIcons = () =>
   createIcons({ icons: iconSet, attrs: { "aria-hidden": "true" } });
 const root = document.documentElement;
+const siteBase = import.meta.env.BASE_URL;
 const themeButton = document.querySelector<HTMLButtonElement>(".theme-toggle");
 const preferredTheme = matchMedia("(prefers-color-scheme: dark)");
 let explicitTheme: string | null = null;
@@ -85,7 +86,7 @@ function applyTheme(theme: "light" | "dark") {
   document
     .querySelectorAll<HTMLImageElement>("[data-themed]")
     .forEach((image) => {
-      image.src = `/images/${image.dataset.themed}-${theme}.webp`;
+      image.src = `${siteBase}images/${image.dataset.themed}-${theme}.webp`;
     });
   document
     .querySelector('meta[name="theme-color"]')
@@ -195,13 +196,13 @@ const dialogRoot = document.querySelector("#dialog-root");
 if (dialogRoot) {
   dialogRoot.innerHTML = `<dialog class="download-dialog" aria-labelledby="download-title" aria-describedby="download-description">
     <div class="dialog-inner"><button class="icon-button dialog-close" aria-label="Close download panel"><i data-lucide="x"></i></button>
-    <img class="dialog-brand" src="/images/logo.webp" width="52" height="52" alt="" />
+    <img class="dialog-brand" src="${siteBase}images/logo.webp" width="52" height="52" alt="" />
     <p class="eyebrow">TWO APPS. ONE CONNECTION.</p><h2 id="download-title">Get AirBridge.</h2>
     <p id="download-description" class="dialog-intro">You'll need AirBridge on both your Mac and Android phone. Public release builds are still being prepared.</p>
     <div class="download-options"><section class="download-option"><i data-lucide="monitor"></i><h3>AirBridge for Mac</h3><p>macOS 14 or later<br />Mac app and menu-bar companion</p><div data-release="mac"></div></section>
     <section class="download-option"><i data-lucide="smartphone"></i><h3>AirBridge for Android</h3><p>Android 8 or later<br />Phone app and optional keyboard</p><div data-release="android"></div></section></div>
     <p class="download-note">Currently in private preview. Not yet distributed through the App Store or Google Play. The Mac preview is not notarized for public distribution.</p>
-    <div class="dialog-links"><a href="/guide/">Read the setup guide</a><a href="/privacy/">Privacy, plainly</a></div></div></dialog>`;
+    <div class="dialog-links"><a href="${siteBase}guide/">Read the setup guide</a><a href="${siteBase}privacy/">Privacy, plainly</a></div></div></dialog>`;
   for (const platform of ["mac", "android"] as const) {
     const slot = dialogRoot.querySelector(`[data-release="${platform}"]`)!;
     const url = releases[platform];

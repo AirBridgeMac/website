@@ -1,6 +1,9 @@
 import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
+const sitePath = (path: string) =>
+  `${process.env.SITE_BASE_PATH?.replace(/\/+$/, "") || ""}${path}`;
+
 async function ready(page: Page) {
   await page.evaluate(() => document.fonts.ready);
   await expect(page.locator("i[data-lucide]")).toHaveCount(0);
@@ -58,7 +61,7 @@ test("home has working assets, no external tracking, and responsive light/dark l
         ];
   for (const theme of ["light", "dark"] as const) {
     await page.emulateMedia({ colorScheme: theme, reducedMotion: "reduce" });
-    await page.goto("/");
+    await page.goto(sitePath("/"));
     await ready(page);
     await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
     for (const size of sizes) {
@@ -89,7 +92,7 @@ test("home has working assets, no external tracking, and responsive light/dark l
 test("feature tabs support pointer and arrow-key navigation without moving focus into hidden content", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto(sitePath("/"));
   await ready(page);
   for (const name of ["Clipboard", "Notifications", "Mirroring", "Files"]) {
     const tab = page.getByRole("tab", { name, exact: true });
@@ -119,7 +122,7 @@ test("feature tabs support pointer and arrow-key navigation without moving focus
 test("download panel is honest about release availability, traps focus, and restores it", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto(sitePath("/"));
   await ready(page);
   const opener = page
     .locator(".hero")
@@ -131,6 +134,11 @@ test("download panel is honest about release availability, traps focus, and rest
   await expect(dialog.locator('a[href$=".apk"],a[href$=".dmg"]')).toHaveCount(
     0,
   );
+  for (const link of await dialog.locator(".dialog-links a").all()) {
+    expect(
+      (await link.getAttribute("href"))?.startsWith(sitePath("/")),
+    ).toBeTruthy();
+  }
   await dialog.getByRole("button", { name: "Close download panel" }).focus();
   await page.keyboard.press("Shift+Tab");
   expect(
@@ -151,7 +159,7 @@ test("theme persists across pages and FAQs expand with the keyboard", async ({
   page,
 }) => {
   await page.emulateMedia({ colorScheme: "light" });
-  await page.goto("/");
+  await page.goto(sitePath("/"));
   await ready(page);
   await page.getByRole("button", { name: "Switch to dark mode" }).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
@@ -160,12 +168,12 @@ test("theme persists across pages and FAQs expand with the keyboard", async ({
   await expect(page.locator("details[open]")).toContainText(
     "The AirBridge keyboard is optional",
   );
-  await page.goto("/guide/");
+  await page.goto(sitePath("/guide/"));
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "A good connection",
   );
-  await page.goto("/privacy/");
+  await page.goto(sitePath("/privacy/"));
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "Privacy",
@@ -179,7 +187,7 @@ test("mobile navigation closes on selection and Escape", async ({
   page,
 }, testInfo) => {
   test.skip(testInfo.project.name !== "mobile", "Mobile-specific navigation");
-  await page.goto("/");
+  await page.goto(sitePath("/"));
   await ready(page);
   await page.getByRole("button", { name: "Open navigation" }).click();
   await expect(
@@ -206,7 +214,7 @@ test("local pages, fragment links, and accessibility checks pass in both themes"
   for (const theme of ["light", "dark"] as const) {
     await page.emulateMedia({ colorScheme: theme, reducedMotion: "reduce" });
     for (const path of ["/", "/guide/", "/privacy/"]) {
-      await page.goto(path);
+      await page.goto(sitePath(path));
       await ready(page);
       const result = await new AxeBuilder({ page })
         .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
@@ -223,6 +231,7 @@ test("local pages, fragment links, and accessibility checks pass in both themes"
       for (const href of [...new Set(links)]) {
         const url = new URL(href, page.url());
         if (url.origin !== new URL(page.url()).origin) continue;
+        expect(url.pathname.startsWith(sitePath("/")), href).toBeTruthy();
         expect(
           (await page.request.get(url.pathname)).status(),
           url.pathname,
