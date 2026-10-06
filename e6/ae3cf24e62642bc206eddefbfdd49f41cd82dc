@@ -1,0 +1,36 @@
+src/main.ts
+  s_dd62d74508ad68::t_ff8aefe1d7b211 67,89,199,205
+privacy/index.html
+  s_dd62d74508ad68::t_27c0cb63d01b22 11,19,21,28-30,47,174-175,182,184,192-193
+README.md
+  s_dd62d74508ad68::t_244ccbf029d69f 53-54,56-57
+  s_dd62d74508ad68::t_ec5bb670351dc6 55
+index.html
+  s_dd62d74508ad68::t_27c0cb63d01b22 20,30,83,91,222,233,272,328,339,397,408,434,503,593,614,622-623
+guide/index.html
+  s_dd62d74508ad68::t_27c0cb63d01b22 11,19,21,28-30,47,268,270,278-279
+tests/site.spec.ts
+  s_dd62d74508ad68::t_ff8aefe1d7b211 4-6,64,95,125,162,171,176,190,217
+  s_dd62d74508ad68::t_ec5bb670351dc6 137,141,234
+  s_dd62d74508ad68::t_892f9ce1447e22 138-140
+vite.config.ts
+  s_dd62d74508ad68::t_ff8aefe1d7b211 4-5,7
+.github/workflows/deploy.yml
+  s_dd62d74508ad68::t_ff8aefe1d7b211 1-46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e6ae3cf24e62642bc206eddefbfdd49f41cd82dc",
+  "prompts": {},
+  "sessions": {
+    "s_dd62d74508ad68": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f0d4-637d-7453-85cd-11ee9eed1aa8",
+        "model": "gpt-6-sol"
+      },
+      "human_author": "shubhindia <shubhindia123@gmail.com>"
+    }
+  }
+}
