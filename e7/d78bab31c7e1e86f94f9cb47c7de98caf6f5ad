@@ -1,0 +1,40 @@
+.github/workflows/deploy.yml
+  s_dd62d74508ad68::t_57a0aea3465461 40-41
+src/releases.ts
+  s_dd62d74508ad68::t_57a0aea3465461 1-20
+README.md
+  s_dd62d74508ad68::t_57a0aea3465461 35,37-41
+src/style.css
+  s_dd62d74508ad68::t_57a0aea3465461 1087-1091,1094-1112,1119,1136-1141,1145
+guide/index.html
+  s_dd62d74508ad68::t_57a0aea3465461 66-68
+  s_dd62d74508ad68::t_f746d871c12827 69-70,113-117
+.env.example
+  s_dd62d74508ad68::t_57a0aea3465461 1-3
+src/main.ts
+  s_dd62d74508ad68::t_57a0aea3465461 2,180,192-196,203-205,208-236,239,241-242
+  s_dd62d74508ad68::t_a9bc08adc84567 206
+  s_dd62d74508ad68::t_c7d5ed9561cd90 244-249
+index.html
+  s_dd62d74508ad68::t_57a0aea3465461 580-582
+  s_dd62d74508ad68::t_685d3988e77ef7 583
+tests/site.spec.ts
+  s_dd62d74508ad68::t_a9bc08adc84567 3,220-243,268-288,297-298,326
+  s_dd62d74508ad68::t_35a7f5c45f3d5f 289-296,299-325,327-350
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e7d78bab31c7e1e86f94f9cb47c7de98caf6f5ad",
+  "prompts": {},
+  "sessions": {
+    "s_dd62d74508ad68": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f0d4-637d-7453-85cd-11ee9eed1aa8",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "shubhindia <shubhindia123@gmail.com>"
+    }
+  }
+}
