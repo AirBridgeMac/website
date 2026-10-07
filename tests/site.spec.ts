@@ -100,6 +100,34 @@ test("hero points to the integrated feature walkthrough", async ({ page }) => {
   await expect(page.locator("video")).toHaveCount(0);
 });
 
+test("every footer has an accessible contact link in both themes", async ({
+  page,
+}, testInfo) => {
+  for (const theme of ["light", "dark"] as const) {
+    await page.emulateMedia({ colorScheme: theme, reducedMotion: "reduce" });
+    for (const path of ["/", "/guide/", "/privacy/"]) {
+      await page.goto(sitePath(path));
+      await ready(page);
+      const contact = page.getByRole("link", {
+        name: "shubhindia123@gmail.com",
+        exact: true,
+      });
+      await expect(contact).toHaveAttribute(
+        "href",
+        "mailto:shubhindia123@gmail.com",
+      );
+      await contact.scrollIntoViewIfNeeded();
+      await contact.focus();
+      await expect(contact).toBeFocused();
+      await expect(contact).toBeInViewport();
+      await assertLayout(page);
+      await page.locator("footer").screenshot({
+        path: `artifacts/contact-${testInfo.project.name}-${theme}-${path.replaceAll("/", "_")}.png`,
+      });
+    }
+  }
+});
+
 test("feature tabs support pointer and arrow-key navigation without moving focus into hidden content", async ({
   page,
 }) => {
