@@ -1,0 +1,30 @@
+README.md
+  s_dd62d74508ad68::t_27a0be5699a9cc 22,57
+tests/site.spec.ts
+  s_dd62d74508ad68::t_4414f20465c823 139-156,162-163,167,176-178,182-190,194,198,201-207
+  s_dd62d74508ad68::t_b5c9519679437a 132-138,157-161,164-166,168-175,179-181,191-193,195-197,199-200
+guide/index.html
+  s_dd62d74508ad68::t_27a0be5699a9cc 50
+index.html
+  s_dd62d74508ad68::t_27a0be5699a9cc 105,147,150,204,252,282,307,344-345,357,376,427,441,445,449,463,515-516,600
+src/main.ts
+  s_dd62d74508ad68::t_27a0be5699a9cc 202-203
+privacy/index.html
+  s_dd62d74508ad68::t_27a0be5699a9cc 50,53,155-158
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "509dd2eefbb5999e72b821533637489ee912aaae",
+  "prompts": {},
+  "sessions": {
+    "s_dd62d74508ad68": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f0d4-637d-7453-85cd-11ee9eed1aa8",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "shubhindia <shubhindia123@gmail.com>"
+    }
+  }
+}
