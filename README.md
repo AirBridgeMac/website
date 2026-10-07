@@ -19,7 +19,7 @@ npx playwright install chromium # First-time browser setup only.
 npm test
 ```
 
-Tests start the built site on port 4176 and stop it afterward. They cover seven viewport sizes, light/dark theme persistence, feature-tab keyboard navigation, mobile navigation, the download dialog, FAQ expansion, local links, assets, and axe accessibility checks. Browser screenshots, traces, reports, dependencies, and build output are ignored by Git.
+Tests start the built site on port 4176 and stop it afterward. They cover responsive layouts, word spacing across line-break breakpoints, light/dark theme persistence, feature-tab keyboard navigation, mobile navigation, the download dialog, FAQ expansion, local links, assets, and axe accessibility checks. Browser screenshots, traces, reports, dependencies, and build output are ignored by Git.
 
 ## Pages and Behavior
 
@@ -54,7 +54,7 @@ It preserves screen proportions and creates light/dark hero compositions. Existi
 
 `npm run build` produces the static site in `dist/`. No server or SPA fallback is required. The GitHub Pages workflow in `.github/workflows/deploy.yml` builds and deploys the site when `main` is pushed. It uses the base path reported by GitHub Pages, so a project URL such as `https://OWNER.github.io/airbridge-site/` and a root custom domain both work.
 
-To publish, create a GitHub repository for this site, select **GitHub Actions** under **Settings > Pages > Build and deployment > Source**, then push `main`. The workflow publishes `dist/` automatically. This local repository has no remote or public deployment configured yet.
+To publish, select **GitHub Actions** under **Settings > Pages > Build and deployment > Source** in the website repository, then push `main`. The workflow publishes `dist/` automatically.
 
 To check the project-path version locally, run `SITE_BASE_PATH=/airbridge-site npm run build` followed by `SITE_BASE_PATH=/airbridge-site npm test`. Build again without `SITE_BASE_PATH` for the normal root-path preview.
 

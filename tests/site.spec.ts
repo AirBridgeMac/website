@@ -129,6 +129,82 @@ test("feature tabs support pointer and arrow-key navigation without moving focus
   ).toBeFocused();
 });
 
+test("copy keeps word spacing across responsive line breaks", async ({
+  page,
+}, testInfo) => {
+  const widths =
+    testInfo.project.name === "mobile"
+      ? [541, 540, 393, 320]
+      : [1440, 1024, 801, 800];
+  const headings = [
+    ["Files", "From here to there."],
+    ["Clipboard", "Copy on one. Paste on the other."],
+    ["Notifications", "A heads-up. Not a phone pickup."],
+    ["Mirroring", "Your phone. A bigger picture."],
+  ];
+  for (const theme of ["light", "dark"] as const) {
+    await page.emulateMedia({ colorScheme: theme, reducedMotion: "reduce" });
+    await page.goto(sitePath("/"));
+    await ready(page);
+    for (const width of widths) {
+      await page.setViewportSize({ width, height: 960 });
+      for (const [tab, text] of headings) {
+        await page.getByRole("tab", { name: tab, exact: true }).click();
+        const heading = page.getByRole("tabpanel").locator("h3");
+        // Check actual text nodes as well as the rendered copy: CSS must not supply missing spaces.
+        await expect(heading).toHaveText(text);
+        await expect(heading).toHaveText(text, { useInnerText: true });
+        if (width === 1440 || width === 393) {
+          await heading.locator("..").screenshot({
+            path: `artifacts/copy-${testInfo.project.name}-${theme}-${tab.toLowerCase()}.png`,
+          });
+        }
+      }
+      await expect(page.locator("#faq-heading")).toHaveText("Good to know.");
+      await expect(
+        page.locator(".faq-section > div > p:last-child"),
+      ).toHaveText("A few things before your devices meet.");
+    }
+    await expect(page.locator(".privacy-facts p")).toHaveText([
+      "Pairing is yours A QR code establishes trust.",
+      "Permission is yours Turn on only what you need.",
+      "Control stays yours Remove a device at any time.",
+    ]);
+    await expect(page.locator(".notification-top > span")).toHaveText(
+      "Messages via AirBridge From your Android phone",
+    );
+  }
+});
+
+test("prose has real spaces around line breaks and between sentences on every page", async ({
+  page,
+}) => {
+  for (const path of ["/", "/guide/", "/privacy/"]) {
+    await page.goto(sitePath(path));
+    await ready(page);
+    const issues = await page.evaluate(() => {
+      const issues: string[] = [];
+      for (const br of document.querySelectorAll("main br, dialog br")) {
+        const before = br.previousSibling?.textContent || "";
+        const after = br.nextSibling?.textContent || "";
+        if (before && after && !/\s$/.test(before) && !/^\s/.test(after))
+          issues.push(
+            `Missing line-break separator: ${br.parentElement?.textContent}`,
+          );
+      }
+      for (const element of document.querySelectorAll(
+        "main h1,main h2,main h3,main p,main li,dialog p",
+      )) {
+        const text = element.textContent || "";
+        if (/[.!?][A-Za-z]/.test(text))
+          issues.push(`Joined sentences: ${text}`);
+      }
+      return issues;
+    });
+    expect(issues, path).toEqual([]);
+  }
+});
+
 test("download panel is honest about release availability, traps focus, and restores it", async ({
   page,
 }) => {

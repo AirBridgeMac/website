@@ -199,8 +199,8 @@ if (dialogRoot) {
     <img class="dialog-brand" src="${siteBase}images/logo.webp" width="52" height="52" alt="" />
     <p class="eyebrow">TWO APPS. ONE CONNECTION.</p><h2 id="download-title">Get AirBridge.</h2>
     <p id="download-description" class="dialog-intro">You'll need AirBridge on both your Mac and Android phone. Public release builds are still being prepared.</p>
-    <div class="download-options"><section class="download-option"><i data-lucide="monitor"></i><h3>AirBridge for Mac</h3><p>macOS 14 or later<br />Mac app and menu-bar companion</p><div data-release="mac"></div></section>
-    <section class="download-option"><i data-lucide="smartphone"></i><h3>AirBridge for Android</h3><p>Android 8 or later<br />Phone app and optional keyboard</p><div data-release="android"></div></section></div>
+    <div class="download-options"><section class="download-option"><i data-lucide="monitor"></i><h3>AirBridge for Mac</h3><p>macOS 14 or later <br />Mac app and menu-bar companion</p><div data-release="mac"></div></section>
+    <section class="download-option"><i data-lucide="smartphone"></i><h3>AirBridge for Android</h3><p>Android 8 or later <br />Phone app and optional keyboard</p><div data-release="android"></div></section></div>
     <p class="download-note">Currently in private preview. Not yet distributed through the App Store or Google Play. The Mac preview is not notarized for public distribution.</p>
     <div class="dialog-links"><a href="${siteBase}guide/">Read the setup guide</a><a href="${siteBase}privacy/">Privacy, plainly</a></div></div></dialog>`;
   for (const platform of ["mac", "android"] as const) {
