@@ -1,5 +1,6 @@
 import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { macRelease } from "../src/releases";
 
 const sitePath = (path: string) =>
   `${process.env.SITE_BASE_PATH?.replace(/\/+$/, "") || ""}${path}`;
@@ -216,7 +217,30 @@ test("download panel is honest about release availability, traps focus, and rest
   await opener.click();
   const dialog = page.getByRole("dialog");
   await expect(dialog).toBeVisible();
-  await expect(dialog.getByText("Public build coming soon")).toHaveCount(2);
+  await expect(dialog.getByText("Public build coming soon")).toHaveCount(1);
+  await expect(
+    dialog.getByRole("region", { name: "AirBridge for Android" }),
+  ).toContainText("Public build coming soon");
+  await expect(
+    dialog.getByRole("link", {
+      name: "Download for Apple Silicon",
+      exact: true,
+    }),
+  ).toHaveAttribute("href", macRelease.downloads[0].url);
+  await expect(
+    dialog.getByRole("link", { name: "Download for Intel Mac", exact: true }),
+  ).toHaveAttribute("href", macRelease.downloads[1].url);
+  await expect(
+    dialog.getByRole("link", { name: "Release notes", exact: true }),
+  ).toHaveAttribute("href", macRelease.notes);
+  await expect(
+    dialog.getByRole("link", { name: "Checksums", exact: true }),
+  ).toHaveAttribute("href", macRelease.checksums);
+  await expect(dialog).toContainText(`Preview ${macRelease.version}`);
+  await expect(dialog).toContainText("Not notarized by Apple");
+  await expect(dialog).toContainText(
+    "Finder's Share extension is not included",
+  );
   await expect(dialog.locator('a[href$=".apk"],a[href$=".dmg"]')).toHaveCount(
     0,
   );
@@ -239,6 +263,89 @@ test("download panel is honest about release availability, traps focus, and rest
   await opener.click();
   await dialog.getByRole("button", { name: "Close download panel" }).click();
   await expect(opener).toBeFocused();
+});
+
+test("both Mac download controls request the matching release asset", async ({
+  page,
+}) => {
+  await page.goto(sitePath("/"));
+  await page
+    .locator(".hero")
+    .getByRole("button", { name: "Get AirBridge" })
+    .click();
+  for (const [index, arch] of ["arm64", "x86_64"].entries()) {
+    const release = macRelease.downloads[index];
+    const filename = `AirBridge-${macRelease.version}-macos-${arch}.zip`;
+    expect(new URL(release.url).pathname).toBe(
+      `/AirBridgeMac/website/releases/download/mac-v${macRelease.version}/${filename}`,
+    );
+    // Synthetic download: do not fetch real app binaries during browser tests.
+    await page.route(release.url, (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "application/zip",
+        headers: {
+          "content-disposition": `attachment; filename="${filename}"`,
+        },
+        body: "Synthetic download test",
+      }),
+    );
+    const pending = page.waitForEvent("download");
+    await page
+      .getByRole("dialog")
+      .getByRole("link", { name: `Download for ${release.label}`, exact: true })
+      .click();
+    const download = await pending;
+    expect(download.url()).toBe(release.url);
+    expect(download.suggestedFilename()).toBe(filename);
+    await download.cancel();
+  }
+});
+
+test("download panel fits and remains accessible in both themes", async ({
+  page,
+}, testInfo) => {
+  const widths = testInfo.project.name === "mobile" ? [393, 320] : [1440, 800];
+  for (const theme of ["light", "dark"] as const) {
+    await page.emulateMedia({ colorScheme: theme, reducedMotion: "reduce" });
+    for (const width of widths) {
+      await page.setViewportSize({ width, height: width === 320 ? 568 : 960 });
+      await page.goto(sitePath("/"));
+      await ready(page);
+      await page
+        .locator(".hero")
+        .getByRole("button", { name: "Get AirBridge" })
+        .click();
+      const dialog = page.getByRole("dialog");
+      expect(
+        await dialog.evaluate(
+          (element) => element.scrollWidth <= element.clientWidth + 1,
+        ),
+      ).toBeTruthy();
+      for (const control of await dialog.locator("a,button").all()) {
+        await control.scrollIntoViewIfNeeded();
+        await expect(control).toBeInViewport();
+        expect(
+          await control.evaluate(
+            (element) => element.scrollWidth <= element.clientWidth + 1,
+          ),
+        ).toBeTruthy();
+      }
+      await dialog.evaluate((element) => element.scrollTo(0, 0));
+      await page.screenshot({
+        path: `artifacts/downloads-${testInfo.project.name}-${theme}-${width}.png`,
+      });
+      const result = await new AxeBuilder({ page })
+        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+        .analyze();
+      expect(
+        result.violations.map((v) => ({
+          id: v.id,
+          nodes: v.nodes.map((n) => n.target),
+        })),
+      ).toEqual([]);
+    }
+  }
 });
 
 test("theme persists across pages and FAQs expand with the keyboard", async ({

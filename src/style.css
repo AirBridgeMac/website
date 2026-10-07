@@ -1084,7 +1084,31 @@ figcaption {
   gap: 10px;
   padding-inline: 12px;
   min-height: 44px;
+  margin: 0;
+}
+.release-downloads {
+  display: grid;
+  gap: 8px;
   margin-top: 18px;
+}
+.release-downloads .button + .button {
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line);
+}
+.release-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 14px;
+  font-size: 11px;
+}
+.release-links:empty {
+  display: none;
+}
+.release-links a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 .unavailable {
   display: flex;
@@ -1092,7 +1116,7 @@ figcaption {
   gap: 7px;
   min-height: 44px;
   border-top: 1px solid var(--line);
-  margin-top: 18px;
+  margin-top: 0;
   padding-top: 13px;
   color: var(--muted);
   font-size: 11px;
@@ -1109,9 +1133,16 @@ figcaption {
   font-size: 11px;
   line-height: 1.7;
 }
+.download-note strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 550;
+  margin-bottom: 4px;
+}
 .dialog-links {
   margin-top: 20px;
   display: flex;
+  flex-wrap: wrap;
   gap: 25px;
 }
 .dialog-links a {

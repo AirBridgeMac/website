@@ -1,4 +1,5 @@
 import "./style.css";
+import { macRelease } from "./releases";
 import {
   createIcons,
   ArrowDown,
@@ -176,7 +177,7 @@ tabs.forEach((tab, index) => {
   });
 });
 
-// Only explicitly configured HTTPS release assets become download links.
+// Only verified release metadata or explicitly configured HTTPS URLs become links.
 function releaseUrl(value: unknown): string | null {
   if (typeof value !== "string" || !value.trim()) return null;
   try {
@@ -188,38 +189,64 @@ function releaseUrl(value: unknown): string | null {
     return null;
   }
 }
-const releases = {
-  mac: releaseUrl(import.meta.env.VITE_MAC_DOWNLOAD_URL),
-  android: releaseUrl(import.meta.env.VITE_ANDROID_DOWNLOAD_URL),
-};
+const customMacUrl = releaseUrl(import.meta.env.VITE_MAC_DOWNLOAD_URL);
+const androidUrl = releaseUrl(import.meta.env.VITE_ANDROID_DOWNLOAD_URL);
+const macDownloads = customMacUrl
+  ? [{ label: "Download for Mac", url: customMacUrl }]
+  : macRelease.downloads;
 const dialogRoot = document.querySelector("#dialog-root");
 if (dialogRoot) {
   dialogRoot.innerHTML = `<dialog class="download-dialog" aria-labelledby="download-title" aria-describedby="download-description">
     <div class="dialog-inner"><button class="icon-button dialog-close" aria-label="Close download panel"><i data-lucide="x"></i></button>
     <img class="dialog-brand" src="${siteBase}images/logo.webp" width="52" height="52" alt="" />
     <p class="eyebrow">TWO APPS. ONE CONNECTION.</p><h2 id="download-title">Get AirBridge.</h2>
-    <p id="download-description" class="dialog-intro">You'll need AirBridge on both your Mac and Android phone. Public release builds are still being prepared.</p>
-    <div class="download-options"><section class="download-option"><i data-lucide="monitor"></i><h3>AirBridge for Mac</h3><p>macOS 14 or later <br />Mac app and menu-bar companion</p><div data-release="mac"></div></section>
-    <section class="download-option"><i data-lucide="smartphone"></i><h3>AirBridge for Android</h3><p>Android 8 or later <br />Phone app and optional keyboard</p><div data-release="android"></div></section></div>
-    <p class="download-note">Currently in private preview. Not yet distributed through the App Store or Google Play. The Mac preview is not notarized for public distribution.</p>
+    <p id="download-description" class="dialog-intro">You'll need AirBridge on both devices. Available preview builds are listed below.</p>
+    <div class="download-options"><section class="download-option" aria-labelledby="mac-download-title"><i data-lucide="monitor"></i><h3 id="mac-download-title">AirBridge for Mac</h3><p>macOS 14 or later <br /><span data-mac-version></span></p><div class="release-downloads" data-release="mac"></div><div class="release-links" data-mac-links></div></section>
+    <section class="download-option" aria-labelledby="android-download-title"><i data-lucide="smartphone"></i><h3 id="android-download-title">AirBridge for Android</h3><p>Android 8 or later <br />Phone app and optional keyboard</p><div class="release-downloads" data-release="android"></div></section></div>
+    <p class="download-note"><strong>Mac preview limitations</strong> Not notarized by Apple; macOS may show a security warning. Finder's Share extension is not included. Neither app is available on the App Store or Google Play.</p>
     <div class="dialog-links"><a href="${siteBase}guide/">Read the setup guide</a><a href="${siteBase}privacy/">Privacy, plainly</a></div></div></dialog>`;
-  for (const platform of ["mac", "android"] as const) {
-    const slot = dialogRoot.querySelector(`[data-release="${platform}"]`)!;
-    const url = releases[platform];
-    if (url) {
-      const link = document.createElement("a");
-      link.className = "button";
-      link.href = url;
-      link.rel = "noopener noreferrer";
-      link.innerHTML = `Download ${platform === "mac" ? "for Mac" : "APK"} <i data-lucide="arrow-down-to-line"></i>`;
-      slot.append(link);
-    } else
-      slot.innerHTML =
-        '<p class="unavailable"><i data-lucide="clock"></i>Public build coming soon</p>';
+  function downloadLink(label: string, value: string) {
+    const url = releaseUrl(value);
+    if (!url) return null;
+    const link = document.createElement("a");
+    link.className = "button";
+    link.href = url;
+    link.rel = "noopener noreferrer";
+    link.setAttribute(
+      "aria-label",
+      label.startsWith("Download") ? label : `Download for ${label}`,
+    );
+    link.append(document.createTextNode(label));
+    const icon = document.createElement("i");
+    icon.dataset.lucide = "arrow-down-to-line";
+    link.append(icon);
+    return link;
   }
-  if (releases.mac || releases.android) {
-    dialogRoot.querySelector("#download-description")!.textContent =
-      "You'll need AirBridge on both devices. Available preview builds are listed below; these are not store releases.";
+  for (const download of macDownloads) {
+    const link = downloadLink(download.label, download.url);
+    if (link) dialogRoot.querySelector('[data-release="mac"]')!.append(link);
+  }
+  dialogRoot.querySelector("[data-mac-version]")!.textContent = customMacUrl
+    ? "Preview build"
+    : `Preview ${macRelease.version}`;
+  if (!customMacUrl) {
+    for (const [label, url] of [
+      ["Release notes", macRelease.notes],
+      ["Checksums", macRelease.checksums],
+    ]) {
+      const link = document.createElement("a");
+      link.href = url;
+      link.textContent = label;
+      link.rel = "noopener noreferrer";
+      dialogRoot.querySelector("[data-mac-links]")!.append(link);
+    }
+  }
+  const androidSlot = dialogRoot.querySelector('[data-release="android"]')!;
+  if (androidUrl) {
+    androidSlot.append(downloadLink("Download APK", androidUrl)!);
+  } else {
+    androidSlot.innerHTML =
+      '<p class="unavailable"><i data-lucide="clock"></i>Public build coming soon</p>';
   }
   const dialog = dialogRoot.querySelector<HTMLDialogElement>("dialog")!;
   let opener: HTMLElement | null = null;

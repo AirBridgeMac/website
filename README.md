@@ -32,9 +32,13 @@ Tests start the built site on port 4176 and stop it afterward. They cover respon
 
 ## Downloads
 
-No public release links are configured. The site explicitly labels the apps as private preview and does not pretend they are on an app store. Download controls show availability, not dead links or test APKs.
+The download panel includes separate Apple Silicon and Intel ZIPs for the public Mac preview, plus release notes and checksums. The version and public URLs live in `src/releases.ts`. These links are included in normal local and GitHub Pages builds without secrets or browser API requests. Android remains marked unavailable until a public APK is configured.
 
-When verified releases exist, set `VITE_MAC_DOWNLOAD_URL` and `VITE_ANDROID_DOWNLOAD_URL` to HTTPS artifact URLs in an ignored local `.env` or the build environment. These URLs are public build-time configuration, not secrets. The site rejects non-HTTPS URLs and URLs containing credentials. Review the preview/notarization copy at the same time; it deliberately does not change automatically when a URL is supplied. Do not commit or serve local developer-signed builds as public releases.
+For the next Mac preview, verify the new release assets, update `macVersion` in `src/releases.ts`, and rebuild/deploy. Downloads are intentionally pinned to a reviewed version, not automatically changed by a release event. Do not use GitHub's Latest shortcut for pre-releases or a repository hosting both platforms.
+
+Set `VITE_ANDROID_DOWNLOAD_URL` to a verified public HTTPS APK URL in an ignored local `.env`, the build environment, or the website repository's **Settings > Secrets and variables > Actions > Variables**. The Pages workflow passes this public variable into the build. The existing `VITE_MAC_DOWNLOAD_URL` override is also supported; when set, it replaces the architecture-specific controls with one generic Mac download and hides the default version/notes/checksums to avoid mismatched metadata.
+
+These URLs are public build-time configuration, not secrets. The site rejects non-HTTPS URLs and URLs containing credentials. Review availability and preview/notarization copy when publishing a new platform or changing distribution: the current Mac preview is not notarized and omits Finder's Share extension. No app binaries or signing credentials belong in this repository.
 
 ## Artwork
 
