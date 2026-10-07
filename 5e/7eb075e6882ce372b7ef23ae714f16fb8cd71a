@@ -1,0 +1,31 @@
+src/style.css
+  s_dd62d74508ad68::t_aacd71d163a13d 994-1001
+index.html
+  s_dd62d74508ad68::t_aacd71d163a13d 618-621
+  s_dd62d74508ad68::t_91ca41a85cb429 622-623
+guide/index.html
+  s_dd62d74508ad68::t_aacd71d163a13d 283-286
+  s_dd62d74508ad68::t_93b6f71cc60fcc 287-288
+tests/site.spec.ts
+  s_dd62d74508ad68::t_aacd71d163a13d 103-122
+  s_dd62d74508ad68::t_26ad31811f2ff4 123-130
+privacy/index.html
+  s_dd62d74508ad68::t_aacd71d163a13d 189-192
+  s_dd62d74508ad68::t_c15218a738fac3 193-194
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5e7eb075e6882ce372b7ef23ae714f16fb8cd71a",
+  "prompts": {},
+  "sessions": {
+    "s_dd62d74508ad68": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f0d4-637d-7453-85cd-11ee9eed1aa8",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "shubhindia <shubhindia123@gmail.com>"
+    }
+  }
+}
