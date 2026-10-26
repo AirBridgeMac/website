@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="How the AirBridge preview handles pairing, files, clipboard data, notifications, and screen sharing."
+      content="AirBridge's privacy policy: how the Android app, Mac companion, and website handle files, clipboard, keyboard, voice, notifications, and camera data, and how to delete your data."
     />
     <meta name="theme-color" content="#f6f8f6" />
     <link rel="icon" href="%BASE_URL%images/favicon.png" />
-    <title>Privacy, plainly - AirBridge</title>
+    <link rel="canonical" href="https://airbridge.work/privacy/" />
+    <title>Privacy Policy - AirBridge</title>
     <script src="/theme.js"></script>
   </head>
   <body>
@@ -47,14 +48,45 @@
         <a class="text-link" href="%BASE_URL%"
           >AirBridge <i data-lucide="arrow-up-right"></i
         ></a>
-        <h1>Privacy, <br /><em>plainly.</em></h1>
+        <h1>Privacy <br /><em>policy.</em></h1>
         <p>
-          What the current AirBridge preview does with your data. Updated
-          October 7, 2026.
+          AirBridge privacy policy for the Android app, Mac app, and website.
+          Last updated <time datetime="2026-10-26">October 26, 2026</time>.
         </p>
       </div>
       <article class="document-content">
-        <section>
+        <nav class="document-toc" aria-label="Privacy policy sections">
+          <a href="#contact">Contact</a>
+          <a href="#connection">Pairing</a>
+          <a href="#files">Files</a>
+          <a href="#clipboard">Clipboard</a>
+          <a href="#keyboard">Keyboard</a>
+          <a href="#voice">Voice typing</a>
+          <a href="#notifications">Notifications</a>
+          <a href="#capture">Screen and camera</a>
+          <a href="#permissions">Permissions</a>
+          <a href="#website">Website and support</a>
+          <a href="#deletion">Retention and deletion</a>
+        </nav>
+        <section id="contact">
+          <h2>Who to contact.</h2>
+          <p>
+            AirBridge is developed by Shubham Gopale. For privacy questions or
+            deletion requests, contact
+            <a href="mailto:shubhindia1997@gmail.com"
+              >shubhindia1997@gmail.com</a
+            >. This policy covers the Android app
+            (<code>io.airbridge.android</code>), its Mac companion, and
+            <a href="https://airbridge.work/">airbridge.work</a>.
+          </p>
+          <p>
+            This policy describes the data used by the features below. Available
+            features depend on your app version and device. Optional features
+            such as clipboard sync, notification forwarding, and camera sharing
+            are controlled separately.
+          </p>
+        </section>
+        <section id="connection">
           <h2>A direct connection.</h2>
           <p>
             AirBridge pairs your Mac and Android phone for communication over
@@ -64,6 +96,16 @@
             used to verify your Mac.
           </p>
           <p>
+            The apps have no advertising or analytics SDK and do not send your
+            files, clipboard, typed text, or notification contents to the
+            developer. Local network discovery uses your device's network
+            address and receiver identity to find the paired Mac. Your device
+            names and pairing identifiers are exchanged between the devices.
+            Scanning a pairing QR code uses your phone's camera locally, without
+            saving the scan or sending the camera feed to the developer.
+            Separately approved live camera sharing is described below.
+          </p>
+          <p>
             Your Mac keeps its receiver identity and paired-device records
             locally, storing device-token hashes rather than the original
             tokens. Android encrypts its pairing credential using Android
@@ -71,7 +113,7 @@
             Mac only on Android does not revoke the Mac's existing phone record.
           </p>
         </section>
-        <section>
+        <section id="files">
           <h2>Files stay where you send them.</h2>
           <p>
             Accepted files are saved on the receiving device. Mac-to-Android
@@ -88,14 +130,34 @@
             download, open, or share with other apps can be retained by those
             apps.
           </p>
-        </section>
-        <section>
-          <h2>A clipboard, not a history.</h2>
           <p>
-            Clipboard sync is opt-in. AirBridge does not log or save text
-            clipboard history. Only the latest update is buffered temporarily;
-            disconnected copies are not replayed later. Mac image conversion
-            stays in memory.
+            File access is limited to files you select or share to AirBridge and
+            files received from your paired Mac. If you choose to open a
+            received APK, AirBridge may request Android's permission to install
+            apps from this source, then hand that file to Android's installer.
+            You must separately confirm installation. AirBridge does not install
+            packages silently or use this feature to update itself
+            automatically.
+          </p>
+        </section>
+        <section id="clipboard">
+          <h2>Clipboard sync and recent copies.</h2>
+          <p>
+            Clipboard sync is opt-in and sends copied text or supported images
+            between your paired devices. The sync service buffers only the
+            latest update temporarily; disconnected copies are not replayed
+            later. Mac image conversion stays in memory. Sync does not save text
+            history to disk.
+          </p>
+          <p>
+            Separately, when Android allows clipboard access, the AirBridge
+            keyboard can keep up to ten recent copied text items in memory for
+            its clipboard panel. This can include clipboard changes delivered
+            while the keyboard is hidden. These items are replaced as newer
+            copies arrive and cleared when the keyboard service ends. They are
+            not written to disk or sent to the developer. Keeping recent copies
+            does not itself send them to your Mac; automatic sharing requires
+            separate consent.
           </p>
           <p>
             Android temporarily caches a received clipboard image behind a
@@ -111,12 +173,85 @@
             be recognized automatically.
           </p>
         </section>
-        <section>
+        <section id="keyboard">
+          <h2>The optional keyboard.</h2>
+          <p>
+            AirBridge processes key presses and the current word on your phone
+            to enter text in the app you are using and offer English word
+            suggestions. It does not save a typing history or send typing to the
+            developer or your Mac. Suggestions use a bundled dictionary, not a
+            cloud typing service. Keyboard appearance and height are saved
+            locally. Emoji recents are limited to the current picker session;
+            emoji search queries are processed locally and are not saved as
+            search history.
+          </p>
+          <p>
+            Saved phrases are text you explicitly enter in keyboard settings. Up
+            to twenty phrases are stored in the app's private settings until you
+            edit or remove them. Tapping a phrase or clipboard item inserts it
+            into the app you are using, which may save or send that text
+            according to its own practices. Do not store passwords in saved
+            phrases.
+          </p>
+          <p>
+            Automatic clipboard sharing needs separate consent as well as
+            selecting AirBridge as your keyboard. It can then send newly copied
+            text and readable PNG/JPEG images to your paired Mac while other
+            apps are open or the keyboard is hidden. Sharing pauses while the
+            phone is locked or the field is marked private or as a password.
+            Selecting the keyboard alone does not enable sharing. Switch
+            keyboards or turn off automatic clipboard sync to stop this access.
+          </p>
+          <p>
+            Autofill and verification-code suggestions come from your selected
+            Android autofill provider when supported. AirBridge hosts the
+            provider's protected suggestions; it does not read your SMS inbox,
+            email, saved passwords, or the protected suggestion contents. The
+            provider and the app receiving the filled value have their own
+            data-handling practices.
+          </p>
+        </section>
+        <section id="voice">
+          <h2>Voice typing and your speech provider.</h2>
+          <p>
+            Voice typing is optional. It requires Android microphone permission
+            and starts when you tap the microphone in the keyboard. AirBridge
+            passes speech to Android's speech recognition service and inserts
+            the returned text into the app you are using. Tap the microphone
+            again to stop; recognition also stops when the keyboard is hidden or
+            its input session finishes.
+          </p>
+          <p>
+            AirBridge uses Android's on-device recognizer when available.
+            Otherwise it uses your phone's installed speech service and requests
+            offline recognition, but that request does not guarantee offline
+            processing. The provider may send audio to its servers. Its
+            processing, retention, and deletion practices are governed by that
+            provider's settings and privacy policy. Check your selected speech
+            provider before using voice typing for confidential information.
+          </p>
+          <p>
+            AirBridge does not save audio recordings, maintain a dictation
+            history, or send audio to the developer or your paired Mac. The app
+            receiving the dictated text may retain it. You can revoke microphone
+            access in Android Settings at any time.
+          </p>
+        </section>
+        <section id="notifications">
           <h2>Your notifications, by permission.</h2>
           <p>
             You choose the Android apps that can forward notifications. Message
             previews are off by default and hidden while the phone is locked.
             Android-protected notification content is not bypassed.
+          </p>
+          <p>
+            With notification access granted and forwarding enabled, Android
+            delivers notification events to AirBridge while other apps are open.
+            App names and, when previews are enabled, notification titles and
+            messages from selected apps are sent to your paired Mac.
+            Notification contents can include sensitive information. The app
+            picker uses locally available app names and icons; it does not
+            upload your installed-app list to the developer.
           </p>
           <p>
             AirBridge stores no notification title/body history. Active
@@ -132,8 +267,8 @@
             according to its own behavior.
           </p>
         </section>
-        <section>
-          <h2>Screen sharing is always explicit.</h2>
+        <section id="capture">
+          <h2>Screen and camera sharing.</h2>
           <p>
             Wi-Fi screen sharing requires a manual start and fresh Android
             approval for every session. AirBridge does not save frames or
@@ -141,9 +276,65 @@
             restart capture after reconnecting. Protected content remains
             protected.
           </p>
+          <p>
+            In builds with live camera sharing, you select the front or rear
+            camera and approve a session on the phone. Camera permission allows
+            AirBridge to stream that camera's video to your paired Mac over the
+            local network. AirBridge buffers live video in memory without
+            recording it or sharing phone audio. You can stop from the phone or
+            Mac; capture also ends if the phone locks or the connection fails. A
+            new session requires a new start and approval.
+          </p>
+          <p>
+            Screen and camera feeds can reveal anything visible in the shared
+            screen or scene. If you share the Mac preview or use AirBridge's
+            camera output in a video-call app where supported, that app and the
+            call's participants may transmit, capture, or retain it under their
+            own settings and policies.
+          </p>
         </section>
-        <section>
-          <h2>This website.</h2>
+        <section id="permissions">
+          <h2>What permissions are for.</h2>
+          <ul>
+            <li>
+              <strong>Camera:</strong> scanning pairing QR codes and, when you
+              approve it in a supported build, live camera sharing.
+            </li>
+            <li>
+              <strong>Microphone:</strong> voice typing through Android's speech
+              recognizer after you tap the microphone.
+            </li>
+            <li>
+              <strong>Notification access:</strong> forwarding notifications
+              from your selected apps and handling supported replies. Permission
+              to show AirBridge's own notifications is separate and is used for
+              transfer progress, incoming requests, and active connections or
+              sharing sessions.
+            </li>
+            <li>
+              <strong>Screen capture:</strong> sharing the screen or app content
+              you approve in Android's capture prompt for that session.
+            </li>
+            <li>
+              <strong>Keyboard access:</strong> entering text, displaying
+              suggestions, and using clipboard features as described above.
+              AirBridge does not use an accessibility service to monitor input.
+            </li>
+            <li>
+              <strong>Files and package installation:</strong> accessing files
+              you choose, saving received files, and opening selected APK files
+              in Android's installer with your confirmation. AirBridge does not
+              request access to your entire photo library.
+            </li>
+            <li>
+              <strong>Network and background operation:</strong> discovering and
+              communicating with your paired Mac and keeping active transfers or
+              enabled connection features running.
+            </li>
+          </ul>
+        </section>
+        <section id="website">
+          <h2>This website and support.</h2>
           <p>
             This version of the website includes no analytics, tracking pixels,
             advertising scripts, or account forms. Fonts and product images are
@@ -157,21 +348,65 @@
             policies. Download links, when available, take you to the release
             host.
           </p>
+          <p>
+            This site and public downloads use GitHub hosting. See
+            <a
+              href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+              >GitHub's privacy statement</a
+            >. If you email support, your email provider and ours process the
+            message. We use the information you send to answer your request;
+            please avoid sending passwords, pairing codes, or private files.
+            This may include your email address, message, and attachments you
+            choose to send. Support correspondence is kept as needed to resolve
+            your request and follow up; you can request deletion using the
+            contact address above, subject to any legally required retention.
+          </p>
         </section>
-        <section>
+        <section id="deletion">
           <h2>Change your mind at any time.</h2>
           <p>
             Turn off individual features in either app. Revoke Android
-            notification or camera permissions through system settings. Remove a
-            phone in the Mac app to revoke its pairing. Shared or received files
-            are separate from these permissions; delete those files from their
-            saved location when you no longer need them.
+            notification, camera, or microphone permissions through system
+            settings. Remove a phone in the Mac app to revoke its pairing.
+            Shared or received files are separate from these permissions; delete
+            those files from their saved location when you no longer need them.
           </p>
           <p>
-            This describes the current preview implementation, not a security
-            audit or a promise about future releases. See the
+            Remove saved phrases under
+            <strong>Keyboard settings &gt; Edit saved phrases</strong> and save
+            your changes. Keyboard clipboard history exists only for the
+            lifetime of its service; force-stopping AirBridge in Android
+            Settings ends that process and clears this in-memory history.
+            Clearing the app's storage removes its private preferences, saved
+            phrases, credentials, and cache. AirBridge disables Android backup
+            of its private app data.
+          </p>
+          <p>
+            Uninstalling Android AirBridge removes its private settings,
+            credentials, and cached data, but not files saved in shared
+            Downloads or data retained by another app or device. Remove the
+            pairing and received files on each device separately. We cannot
+            remotely erase data on your devices because AirBridge has no cloud
+            account or central copy. Contact us to request deletion of
+            information you sent directly to support; limited records may need
+            to be retained where legally required.
+          </p>
+          <p>
+            Retention depends on the data: received files remain until deleted,
+            saved settings and phrases remain until removed, and temporary
+            clipboard, notification, and video data follow the limits described
+            above. AirBridge does not create user accounts, so there is no
+            separate AirBridge account to delete. See the
             <a href="%BASE_URL%guide/">setup guide</a> for feature-specific
             controls and limitations.
+          </p>
+        </section>
+        <section id="changes">
+          <h2>Changes to this policy.</h2>
+          <p>
+            We will update this page when AirBridge's data handling changes and
+            revise the date at the top. New permissions or optional features may
+            also require additional notices or consent in the app.
           </p>
         </section>
       </article>
@@ -188,8 +423,8 @@
         >
         <p>
           A bridge, not another ecosystem.
-          <a class="footer-contact" href="mailto:shubhindia123@gmail.com"
-            >shubhindia123@gmail.com</a
+          <a class="footer-contact" href="mailto:shubhindia1997@gmail.com"
+            >shubhindia1997@gmail.com</a
           >
         </p>
         <nav aria-label="Footer navigation">

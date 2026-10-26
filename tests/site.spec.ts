@@ -108,14 +108,12 @@ test("every footer has an accessible contact link in both themes", async ({
     for (const path of ["/", "/guide/", "/privacy/"]) {
       await page.goto(sitePath(path));
       await ready(page);
-      const contact = page.getByRole("link", {
-        name: "shubhindia123@gmail.com",
+      const address = "shubhindia1997@gmail.com";
+      const contact = page.locator("footer").getByRole("link", {
+        name: address,
         exact: true,
       });
-      await expect(contact).toHaveAttribute(
-        "href",
-        "mailto:shubhindia123@gmail.com",
-      );
+      await expect(contact).toHaveAttribute("href", `mailto:${address}`);
       await contact.scrollIntoViewIfNeeded();
       await contact.focus();
       await expect(contact).toBeFocused();
@@ -224,13 +222,97 @@ test("prose has real spaces around line breaks and between sentences on every pa
       for (const element of document.querySelectorAll(
         "main h1,main h2,main h3,main p,main li,dialog p",
       )) {
-        const text = element.textContent || "";
+        const prose = element.cloneNode(true) as HTMLElement;
+        // URLs, email addresses and package identifiers contain intentional dots.
+        for (const identifier of prose.querySelectorAll("a,code"))
+          identifier.replaceChildren(document.createTextNode("identifier"));
+        const text = prose.textContent || "";
         if (/[.!?][A-Za-z]/.test(text))
           issues.push(`Joined sentences: ${text}`);
       }
       return issues;
     });
     expect(issues, path).toEqual([]);
+  }
+});
+
+test("privacy explains current Android features and fits both themes", async ({
+  page,
+}, testInfo) => {
+  for (const theme of ["light", "dark"] as const) {
+    await page.emulateMedia({ colorScheme: theme, reducedMotion: "reduce" });
+    await page.goto(sitePath("/privacy/"));
+    await ready(page);
+    const policy = page.locator("article");
+    await expect(page).toHaveTitle("Privacy Policy - AirBridge");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      "Privacy policy.",
+    );
+    await expect(policy).toContainText("Shubham Gopale");
+    await expect(policy).toContainText("io.airbridge.android");
+    await expect(
+      policy.getByRole("link", {
+        name: "shubhindia1997@gmail.com",
+        exact: true,
+      }),
+    ).toHaveAttribute("href", "mailto:shubhindia1997@gmail.com");
+    for (const heading of [
+      "Who to contact.",
+      "The optional keyboard.",
+      "Voice typing and your speech provider.",
+      "Screen and camera sharing.",
+      "Your notifications, by permission.",
+      "Change your mind at any time.",
+    ])
+      await expect(
+        policy.getByRole("heading", { name: heading, exact: true }),
+      ).toBeVisible();
+    await expect(policy).toContainText(
+      "Selecting the keyboard alone does not enable sharing",
+    );
+    await expect(policy).toContainText("confirm installation");
+    await expect(policy.locator("#voice")).toContainText(
+      "provider may send audio to its servers",
+    );
+    await expect(policy.locator("#clipboard")).toContainText(
+      "up to ten recent copied text items in memory",
+    );
+    await expect(policy.locator("#deletion")).toContainText(
+      "Edit saved phrases",
+    );
+    await assertLayout(page);
+    await page.screenshot({
+      path: `artifacts/privacy-${testInfo.project.name}-${theme}.png`,
+      fullPage: true,
+    });
+  }
+});
+
+test("privacy policy is readable without JavaScript or authentication", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  try {
+    const page = await context.newPage();
+    const response = await page.goto(
+      `http://127.0.0.1:4176${sitePath("/privacy/")}`,
+    );
+    expect(response?.status()).toBe(200);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      "Privacy policy.",
+    );
+    await expect(page.locator("#contact")).toContainText("Shubham Gopale");
+    await expect(page.locator("#deletion")).toContainText("deletion");
+    for (const link of await page
+      .getByRole("navigation", { name: "Privacy policy sections" })
+      .getByRole("link")
+      .all()) {
+      const target = await link.getAttribute("href");
+      expect(target).toMatch(/^#[a-z]+$/);
+      await expect(page.locator(target!)).toBeVisible();
+    }
+  } finally {
+    await context.close();
   }
 });
 

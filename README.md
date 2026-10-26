@@ -25,7 +25,7 @@ Tests start the built site on port 4176 and stop it afterward. They cover respon
 
 - `/`: product overview, feature tabs, pairing steps, FAQs, and download availability.
 - `/guide/`: actual setup steps and limitations for pairing, files, clipboard, notifications, and mirroring.
-- `/privacy/`: a plain-language account of the current preview's data handling. Review before any public launch or feature changes.
+- `/privacy/`: the public AirBridge privacy policy for the Android app, Mac companion, and website, including voice recognition providers, temporary clipboard history, saved phrases, camera sharing, and deletion controls. It identifies Shubham Gopale and uses shubhindia1997@gmail.com for privacy requests. The app already links to `https://airbridge.work/privacy/`; use this HTTPS URL in Play Console after deploying the reviewed page. Keep the policy aligned with each release.
 - Theme follows the system until a user chooses light/dark; only that preference is stored locally.
 - Self-hosted fonts and assets. No analytics, forms, trackers, external API calls, or runtime framework.
 - Native modal dialog, keyboard-accessible tabs, visible focus states, semantic page structure, and reduced-motion support.
